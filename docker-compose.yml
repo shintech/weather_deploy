@@ -1,0 +1,18 @@
+version: '2'
+
+services: 
+  bbps:
+    build: .
+    image: shintech/new_weather_log:latest
+    container_name: weather_log
+    env_file:
+      - ./weather.env
+    links:
+      - db       
+    ports:
+      - 8000:8000
+    restart: always
+  db:
+    build: database/
+    container_name: bbps_db
+    
